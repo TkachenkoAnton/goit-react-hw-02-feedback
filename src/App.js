@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Statistics from "./components/Statistics";
 
 class App extends Component {
   state = {
@@ -31,8 +32,6 @@ class App extends Component {
   };
 
   render() {
-    const totalVotes = this.countTotalFeedback();
-    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
     return (
       <>
         <h1>Please leave feedback</h1>
@@ -41,15 +40,13 @@ class App extends Component {
           <button onClick={this.hendelNeutralStateChange}>Neutral</button>
           <button onClick={this.hendelBadStateChange}>Bad</button>
         </div>
-        <div>
-          <p>Good: {this.state.good}</p>
-          <p>Neutral: {this.state.neutral}</p>
-          <p>Bad: {this.state.bad}</p>
-        </div>
-        <div>
-          <p>Total: {totalVotes}</p>
-          <p>Positive feedback: {positiveFeedbackPercentage}%</p>
-        </div>
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+        />
       </>
     );
   }
