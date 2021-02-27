@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import Section from "./components/Section";
+import FeedbackOptions from "./components/FeedbackOptions";
 import Statistics from "./components/Statistics";
+import Notification from "./components/Notification";
 
 class App extends Component {
   state = {
@@ -34,19 +37,34 @@ class App extends Component {
   render() {
     return (
       <>
-        <h1>Please leave feedback</h1>
-        <div>
-          <button onClick={this.hendelGoodStateChange}>Good</button>
-          <button onClick={this.hendelNeutralStateChange}>Neutral</button>
-          <button onClick={this.hendelBadStateChange}>Bad</button>
-        </div>
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={"Good"}
+            onLeaveFeedback={this.hendelGoodStateChange}
+          />
+          <FeedbackOptions
+            options={"Neutral"}
+            onLeaveFeedback={this.hendelNeutralStateChange}
+          />
+          <FeedbackOptions
+            options={"Bad"}
+            onLeaveFeedback={this.hendelBadStateChange}
+          />
+        </Section>
+
+        {this.state.good > 0 || this.state.neutral > 0 || this.state.bad > 0 ? (
+          <Section title="Statistics">
+            <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          </Section>
+        ) : (
+          <Notification message="No feedback given" />
+        )}
       </>
     );
   }
