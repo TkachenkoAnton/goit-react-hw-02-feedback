@@ -48,7 +48,7 @@ class App extends Component {
         </div>
         <div>
           <p>Total: {totalVotes}</p>
-          <p>Positive feedback: {positiveFeedbackPercentage}</p>
+          <p>Positive feedback: {positiveFeedbackPercentage}%</p>
         </div>
       </>
     );
