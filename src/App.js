@@ -11,19 +11,24 @@ class App extends Component {
     bad: 0,
   };
 
-  hendelStateChange = (event) => {
+  handleStateChange = (event) => {
     this.setState((prevState) => {
       const stateKey = event.target.textContent.toLowerCase();
+
       return { [stateKey]: prevState[stateKey] + 1 };
     });
   };
 
   countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+    const { good, neutral, bad } = this.state;
+
+    return good + neutral + bad;
   };
 
   countPositiveFeedbackPercentage = () => {
-    return Math.floor((this.state.good / this.countTotalFeedback()) * 100);
+    const { good } = this.state;
+
+    return Math.floor((good / this.countTotalFeedback()) * 100);
   };
 
   capitalizeFirstLetter = (string) => {
@@ -32,6 +37,8 @@ class App extends Component {
 
   render() {
     const stateKeysArray = Object.keys(this.state);
+    const { good, neutral, bad } = this.state;
+
     return (
       <>
         <Section title="Please leave feedback">
@@ -39,17 +46,17 @@ class App extends Component {
             <FeedbackOptions
               key={key}
               options={this.capitalizeFirstLetter(key)}
-              onLeaveFeedback={this.hendelStateChange}
+              onLeaveFeedback={this.handleStateChange}
             />
           ))}
         </Section>
 
-        {this.state.good > 0 || this.state.neutral > 0 || this.state.bad > 0 ? (
+        {good > 0 || neutral > 0 || bad > 0 ? (
           <Section title="Statistics">
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
