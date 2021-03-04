@@ -4,6 +4,8 @@ import Section from "./components/Section";
 import FeedbackOptions from "./components/FeedbackOptions";
 import Statistics from "./components/Statistics";
 import Notification from "./components/Notification";
+// eslint-disable-next-line
+import baseStyles from "./base-styles/main-base-styles.scss";
 
 class App extends Component {
   state = {
