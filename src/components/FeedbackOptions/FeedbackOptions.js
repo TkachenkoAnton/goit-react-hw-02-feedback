@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import styles from "./feedbackOptions.module.scss";
 
 class FeedbackOptions extends Component {
   render() {
     const { onLeaveFeedback, options } = this.props;
 
-    return <button onClick={onLeaveFeedback}>{options}</button>;
+    return (
+      <button className={styles.feedback__buttons} onClick={onLeaveFeedback}>
+        {options}
+      </button>
+    );
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import shortid from "shortid";
-import Section from "./components/Section";
-import FeedbackOptions from "./components/FeedbackOptions";
+import Section from "./components/Section/Section";
+import FeedbackOptions from "./components/FeedbackOptions/FeedbackOptions";
 import Statistics from "./components/Statistics";
 import Notification from "./components/Notification";
 // eslint-disable-next-line
